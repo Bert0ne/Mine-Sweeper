@@ -1,12 +1,34 @@
+import { startTimer, isTimeUp_ } from './countDown.js'
+
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     const flagsLeft = document.querySelector('#flags-left')
     const result = document.querySelector('#result')
+    const new_game_btn = document.querySelector('.new-game')
+
     let width = 10
     let bombAmount = 20
     let flags = 0
     let squares = []
     let isGameOver = false
+    const countDownTime = 60 
+  
+
+     // Starting Counting Down
+    startTimer(countDownTime)
+
+    setInterval(() => {
+      if (isTimeUp_()) {
+        isGameOver = true;
+        gameOver()
+      }
+    }, 1000);
+
+
+    //button new game listener 
+    new_game_btn.addEventListener('click', () => {
+      window.location = '/'
+    })
   
     //create Board
     function createBoard() {
